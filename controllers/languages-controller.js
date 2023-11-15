@@ -1,4 +1,4 @@
-const knex = require('../db');
+const knex = require('knex')(require('../knexfile'));
 
 const createLanguage = async (req, res) => {
   const { description } = req.body;
