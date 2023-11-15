@@ -12,8 +12,12 @@ const categoryRoutes = require('./routes/category-routes');
 app.use(categoryRoutes);
 const languageRoutes = require('./routes/languages-routes');
 app.use(languageRoutes);
+const phonicRoutes = require('./routes/phonics-routes');
+app.use(phonicRoutes);
+
 const pexelsRoutes = require('./routes/pexels-routes');
 app.use(pexelsRoutes);
+
 // test api
 app.get('/', (req, res) => {
   res.send('Hello! This is the API');
