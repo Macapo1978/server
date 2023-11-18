@@ -56,6 +56,7 @@ const createWord = async (req, res) => {
 
 // READ
 const getAllWords = async (req, res) => {
+
   try {
     const words = await knex('words')
       .select('words.*', 'languages.description as language_description')

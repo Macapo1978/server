@@ -14,7 +14,8 @@ const languageRoutes = require('./routes/languages-routes');
 app.use(languageRoutes);
 const phonicRoutes = require('./routes/phonics-routes');
 app.use(phonicRoutes);
-
+const wordRoutes = require("./routes/words-routes");
+app.use(wordRoutes);
 const pexelsRoutes = require('./routes/pexels-routes');
 app.use(pexelsRoutes);
 

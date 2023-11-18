@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const wordsController = require('../controllers/words-controller');
 
+console.log("estoy aca linea 5")
 router
   .route('/api/words')
   .post(wordsController.createWord)
