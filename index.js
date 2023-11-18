@@ -28,6 +28,9 @@ app.use(patientRoutes);
 // ROUTES AUDIOLOGIES
 const audiologyRoutes = require('./routes/audiology-routes');
 app.use(audiologyRoutes);
+// ROUTES QUIZZES
+const quizRoutes = require('./routes/quiz-routes');
+app.use(quizRoutes);
 
 // ROUTES PEXELS
 const pexelsRoutes = require('./routes/pexels-routes');
