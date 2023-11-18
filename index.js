@@ -22,6 +22,9 @@ app.use(wordRoutes);
 // ROUTES USER
 const userRoutes = require("./routes/user-routes");
 app.use(userRoutes);
+// ROUTES PATIENTS
+const patientRoutes = require('./routes/patient-routes');
+app.use(patientRoutes);
 // ROUTES PEXELS
 const pexelsRoutes = require('./routes/pexels-routes');
 app.use(pexelsRoutes);
