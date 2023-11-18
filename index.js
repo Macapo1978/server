@@ -25,6 +25,10 @@ app.use(userRoutes);
 // ROUTES PATIENTS
 const patientRoutes = require('./routes/patient-routes');
 app.use(patientRoutes);
+// ROUTES AUDIOLOGIES
+const audiologyRoutes = require('./routes/audiology-routes');
+app.use(audiologyRoutes);
+
 // ROUTES PEXELS
 const pexelsRoutes = require('./routes/pexels-routes');
 app.use(pexelsRoutes);
