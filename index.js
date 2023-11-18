@@ -31,9 +31,9 @@ app.use(audiologyRoutes);
 // ROUTES QUIZZES
 const quizRoutes = require('./routes/quiz-routes');
 app.use(quizRoutes);
-// ROUTES GOOGLETRANSLATE
-const googleRoutes = require('./routes/google-routes');
-app.use(googleRoutes);
+// ROUTES translate
+const translateRoutes = require('./routes/translate-routes');
+app.use(translateRoutes);
 // ROUTES PEXELS
 const pexelsRoutes = require('./routes/pexels-routes');
 app.use(pexelsRoutes);
