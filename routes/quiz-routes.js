@@ -13,4 +13,8 @@ router
     .delete(quizzesController.deleteQuiz)
     .get(quizzesController.getQuizById);
 
+router.route('/api/quizzesUser')    
+    .post(quizzesController.getQuizzesUser);
+
+
 module.exports = router;    

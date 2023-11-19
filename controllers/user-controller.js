@@ -117,10 +117,33 @@ const updateUsers = async (req, res) => {
     }
   };
 
+  const getUserByUserName = async (req, res) => {
+
+    try {
+    
+        const user = await knex('users')
+            .select('users.*', 'languages.description as native_language', 'profiles.description as profile')
+            .leftJoin('languages', 'users.native_language_id', 'languages.id')
+            .leftJoin('profiles', 'users.profile_id', 'profiles.id')
+            .where('users.user_name', req.params.userName)
+            .first();
+  
+        if (!user) {
+            return res.status(404).json({
+                message: `User with ID ${req.params.userName} not found.`
+        });
+        }
+        res.json(user);
+
+    } catch (error) {
+      res.status(500).json({ error: `Error getting user with id: ${req.params.userName} error ${error}` });
+    }
+  };
 module.exports = {
     createUser,
     updateUsers,
     deleteUser,
     getUserById,
-    getAllUsers
+    getAllUsers,
+    getUserByUserName
 }
