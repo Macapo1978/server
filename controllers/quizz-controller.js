@@ -62,6 +62,18 @@ const getAllQuizzes = async (req, res) => {
       res.status(500).json({ error: `Error getting quizzes: ${error}` });
     }
 };
+
+const getQuizzUser = async (req, res) => {
+    try {
+        const groupedQuizzes = await groupQuizzes();
+        res.status(200).json(groupedQuizzes);
+
+    } catch (error) {
+      res.status(500).json({ error: `Error getting quizzes: ${error}` });
+    }
+};
+
+
 const valNotNull = ( inputFields ) => {
     const { name, description, createdUser_id, words } = inputFields;
 

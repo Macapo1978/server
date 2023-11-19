@@ -12,4 +12,8 @@ router
     .put(userController.updateUsers)
     .delete(userController.deleteUser);
 
+router
+    .route('/api/usersName/:userName')
+    .get(userController.getUserByUserName);
+
 module.exports = router;
