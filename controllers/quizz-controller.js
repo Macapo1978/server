@@ -63,10 +63,19 @@ const getAllQuizzes = async (req, res) => {
     }
 };
 
-const getQuizzUser = async (req, res) => {
+const getQuizzesUser = async (req, res) => {
+
+    const {quiz_id, user_id} = req.body;
+    if (!quiz_id || !user_id){
+        return res.status(400).json({ error: 'All fields are required.' });
+    }
     try {
-        const groupedQuizzes = await groupQuizzes();
-        res.status(200).json(groupedQuizzes);
+        const quizUser = await knex('quiz_user')
+            .where({quiz_id: quiz_id, user_id: user_id })
+            .select('*')
+            .first();
+
+        return res.status(200).json(quizUser);
 
     } catch (error) {
       res.status(500).json({ error: `Error getting quizzes: ${error}` });
@@ -189,5 +198,6 @@ module.exports = {
     getAllQuizzes,
     createQuiz,
     updateQuiz,
-    deleteQuiz
+    deleteQuiz,
+    getQuizzesUser
 }
