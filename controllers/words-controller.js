@@ -59,11 +59,16 @@ const getAllWords = async (req, res) => {
 
   try {
     const words = await knex('words')
-      .select('words.*', 'languages.description as language_description')
+      .select('words.*', 
+              'languages.description as language_description',
+              'categories.id as categories_id',
+              'categories.description as categories_description ')
       .leftJoin('languages', 'words.language_id', 'languages.id')
       .leftJoin('phonics_sounds as start_sounds', 'words.start_phonics_sounds_id', 'start_sounds.id')
       .leftJoin('phonics_sounds as middle_sounds', 'words.middle_phonics_sounds_id', 'middle_sounds.id')
       .leftJoin('phonics_sounds as end_sounds', 'words.end_phonics_sounds_id', 'end_sounds.id')
+      .leftJoin('word_category', 'words.id' ,'word_category.word_id')
+      .leftJoin('categories', 'categories.id', 'word_category.category_id')
       .select(
         'start_sounds.phonic as start_phonic',
         'middle_sounds.phonic as middle_phonic',
@@ -168,11 +173,16 @@ const deleteWord = async (req, res) => {
 const getWordById = async (req, res) => {
     try {
       const word = await knex('words')
-        .select('words.*', 'languages.description as language_description')
+        .select('words.*', 
+            'languages.description as language_description',
+            'categories.id as categories_id',
+            'categories.description as categories_description ')
         .leftJoin('languages', 'words.language_id', 'languages.id')
         .leftJoin('phonics_sounds as start_sounds', 'words.start_phonics_sounds_id', 'start_sounds.id')
         .leftJoin('phonics_sounds as middle_sounds', 'words.middle_phonics_sounds_id', 'middle_sounds.id')
         .leftJoin('phonics_sounds as end_sounds', 'words.end_phonics_sounds_id', 'end_sounds.id')
+        .leftJoin('word_category', 'words.id' ,'word_category.word_id')
+        .leftJoin('categories', 'categories.id', 'word_category.category_id')
         .select(
           'start_sounds.phonic as start_phonic',
           'middle_sounds.phonic as middle_phonic',
