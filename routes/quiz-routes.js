@@ -16,5 +16,9 @@ router
 router.route('/api/quizzesUser')    
     .post(quizzesController.getQuizzesUser);
 
+router
+    .route('/api/quizzes/searchbyname/:searchQuiz')
+    .get(quizzesController.getQuizByName);
+    
 
 module.exports = router;    
