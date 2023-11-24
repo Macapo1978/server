@@ -1,6 +1,6 @@
 const knex = require('knex')(require('../knexfile'));
 
-const groupQuizzes = async (quizId) => {
+const groupQuizzes = async (quizId, searchName = null) => {
     let query = knex('quizzes')
         .innerJoin('quiz_word', 'quizzes.id', 'quiz_word.quiz_id')
         .select(
@@ -13,6 +13,9 @@ const groupQuizzes = async (quizId) => {
 
     if (quizId !== null && quizId !== undefined) {
         query = query.where('quizzes.id', quizId);
+    }
+    if (searchName !== null && searchName !== undefined) {
+        query = query.where('quizzes.name', 'like', `%${searchName}%`);
     }
 
     const quizzes = await query;
@@ -52,6 +55,17 @@ const getQuizById = async (req, res) => {
       res.status(500).json({ error: `Error getting quiz: ${error}` });
     }
 };
+
+const getQuizByName = async (req, res) => {
+    const searchName = req.params.searchQuiz;
+    try {
+        const groupedQuizzes = await groupQuizzes(null, searchName);
+        res.status(200).json(groupedQuizzes);
+
+    } catch (error) {
+      res.status(500).json({ error: `Error getting quizzes: ${error}` });
+    }
+}
   
 const getAllQuizzes = async (req, res) => {
     try {
@@ -199,5 +213,6 @@ module.exports = {
     createQuiz,
     updateQuiz,
     deleteQuiz,
-    getQuizzesUser
+    getQuizzesUser,
+    getQuizByName
 }
