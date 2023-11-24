@@ -26,6 +26,33 @@ const getPatientById = async (req, res) => {
   }
 };
 
+const getPatientsByName = async(req, res) => {
+  const searchName = req.params.search;
+
+  try {
+    const patient =  await knex('patients')
+        .innerJoin('users', 'patients.user_id', 'users.id')
+        .innerJoin('languages', 'languages.id', 'users.native_language_id')
+        .select('patients.id', 
+                'patients.name', 
+                'patients.last_name', 
+                'patients.user_id',
+                'users.native_language_id',
+                'languages.description')
+        .where((builder) => {
+          builder.whereRaw(`CONCAT(patients.name, ' ', patients.last_name) LIKE ?`, [`%${searchName}%`]);
+        });
+
+    if (!patient) {
+      return res.status(404).json({ message: `Patients not found.` });
+    }
+
+    res.status(200).json(patient);
+  } catch (error) {
+    res.status(500).json({ error: `Error getting patient: ${error}` });
+  }
+}
+
 const getAllPatients = async (req, res) => {
   try {
     const patients = await knex('patients')
@@ -161,4 +188,5 @@ module.exports = {
   createPatient,
   updatePatient,
   deletePatient,
+  getPatientsByName
 };

@@ -12,4 +12,8 @@ router
     .put(patientController.updatePatient)
     .delete(patientController.deletePatient);
 
+router
+    .route('/api/patients/searchbyname/:search') 
+    .get(patientController.getPatientsByName);
+    
 module.exports = router;
