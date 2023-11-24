@@ -42,7 +42,6 @@ app.use(pexelsRoutes);
 app.get('/', (req, res) => {
   res.send('Hello! This is the API');
 });
-
 app.listen(PORT, () => {
   console.log(`running at http://localhost:${PORT}`);
 });

@@ -6,9 +6,14 @@ const getPatientById = async (req, res) => {
   try {
     const patient =  await knex('patients')
         .where('patients.id', patientId)
-        .innerJoin('patients_audiologies', 'patients.id', 'patients_audiologies.patient_id')
-        .innerJoin('audiologies', 'patients_audiologies.audiology_id', 'audiologies.id')
-        .select('patients.id', 'patients.name', 'patients.last_name', 'patients.user_id','audiologies.id as audiology_id', 'audiologies.name as audiology_name', 'audiologies.last_name as audiology_last_name')
+        .innerJoin('users', 'patients.user_id', 'users.id')
+        .innerJoin('languages', 'languages.id', 'users.native_language_id')
+        .select('patients.id', 
+                'patients.name', 
+                'patients.last_name', 
+                'patients.user_id',
+                'users.native_language_id',
+                'languages.description')
         .first();
 
     if (!patient) {
@@ -24,9 +29,14 @@ const getPatientById = async (req, res) => {
 const getAllPatients = async (req, res) => {
   try {
     const patients = await knex('patients')
-        .innerJoin('patients_audiologies', 'patients.id', 'patients_audiologies.patient_id')
-        .innerJoin('audiologies', 'patients_audiologies.audiology_id', 'audiologies.id')
-        .select('patients.id', 'patients.name', 'patients.last_name', 'patients.user_id', 'audiologies.id as audiology_id', 'audiologies.name as audiology_name', 'audiologies.last_name as audiology_last_name');
+      .innerJoin('users', 'patients.user_id', 'users.id')
+      .innerJoin('languages', 'languages.id', 'users.native_language_id')
+      .select('patients.id', 
+              'patients.name', 
+              'patients.last_name', 
+              'patients.user_id',
+              'users.native_language_id',
+              'languages.description');
 
     res.status(200).json(patients);
   } catch (error) {
