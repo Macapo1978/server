@@ -1,19 +1,69 @@
-exports.seed = async function (knex) {
-    await knex('words').where('language_id', 1).del();
-  
-    const animalsData = [
-      { word: 'elephant', syllables: 3, language_id: 1 },
-      { word: 'lion', syllables: 2, language_id: 1 },
-      { word: 'giraffe', syllables: 2, language_id: 1 },
-      { word: 'tiger', syllables: 2, language_id: 1 },
-      { word: 'zebra', syllables: 2, language_id: 1 },
-      { word: 'monkey', syllables: 2, language_id: 1 },
-      { word: 'kangaroo', syllables: 3, language_id: 1 },
-      { word: 'penguin', syllables: 2, language_id: 1 },
-      { word: 'hippopotamus', syllables: 5, language_id: 1 },
-      { word: 'cat', syllables: 1, language_id: 1 },
-    ];
+exports.seed = function (knex) {
+  return knex('words').del()
+    .then(function () {
+      return knex('words').insert([
+        { id: 1, word: 'elephant', language_id: 1, middle_phonics_sounds_id: 3 },
+        { id: 2, word: 'lion', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 3, word: 'giraffe', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 4, word: 'tiger', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 5, word: 'zebra', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 6, word: 'monkey', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 7, word: 'kangaroo', language_id: 1, middle_phonics_sounds_id: 3 },
+        { id: 8, word: 'penguin', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 9, word: 'hippopotamus', language_id: 1, middle_phonics_sounds_id: 5 },
+        { id: 10, word: 'cat', language_id: 1, middle_phonics_sounds_id: 1 },
+        { id: 12, word: 'BEAR', language_id: 1, middle_phonics_sounds_id: 1 },
+        { id: 14, word: 'Apples', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 15, word: 'Banana', language_id: 1, middle_phonics_sounds_id: 3 },
+        { id: 16, word: 'Carrot', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 17, word: 'Broccoli', language_id: 1, middle_phonics_sounds_id: 3 },
+        { id: 18, word: 'Chicken', language_id: 1, middle_phonics_sounds_id: 2 },
+        { id: 19, word: 'Cheese', language_id: 1, middle_phonics_sounds_id: 1 },
+        { id: 20, word: 'Chocolate', language_id: 1, middle_phonics_sounds_id: 3 },
+        { id: 21, word: 'Red', language_id: 1, start_phonics_sounds_id: 18, syllables: 1 },
+        { id: 22, word: 'Blue', language_id: 1, start_phonics_sounds_id: 2, syllables: 1 },
+        { id: 23, word: 'Green', language_id: 1, start_phonics_sounds_id: 7, syllables: 1 },
+        { id: 24, word: 'Yellow', language_id: 1, start_phonics_sounds_id: 9, syllables: 1 },
+        { id: 25, word: 'Purple', language_id: 1, start_phonics_sounds_id: 15, syllables: 2 },
+        { id: 26, word: 'Purple', language_id: 1, start_phonics_sounds_id: 16, syllables: 2 },
+        { id: 27, word: 'Brown', language_id: 1, start_phonics_sounds_id: 2, syllables: 1 },
+        { id: 28, word: 'Gray', language_id: 1, start_phonics_sounds_id: 7, syllables: 1 },
+        { id: 29, word: 'Black', language_id: 1, start_phonics_sounds_id: 2, syllables: 1 },
+        { id: 30, word: 'Strawberry', language_id: 1, start_phonics_sounds_id: 19, middle_phonics_sounds_id: 20, end_phonics_sounds_id: 25, syllables: 3 },
+        { id: 31, word: 'Grapes', language_id: 1, start_phonics_sounds_id: 7, middle_phonics_sounds_id: 18, end_phonics_sounds_id: 19, syllables: 1 },
+        { id: 32, word: 'Pineapples', language_id: 1, start_phonics_sounds_id: 16, middle_phonics_sounds_id: 14, end_phonics_sounds_id: 5, syllables: 3 },
+        { id: 33, word: 'Watermelon', language_id: 1, start_phonics_sounds_id: 23, middle_phonics_sounds_id: 20, end_phonics_sounds_id: 14, syllables: 4 },
+        { id: 34, word: 'Mango', language_id: 1, start_phonics_sounds_id: 13, middle_phonics_sounds_id: 14, end_phonics_sounds_id: 15, syllables: 2 },
+        { id: 35, word: 'Pizzas', language_id: 1, start_phonics_sounds_id: 16, middle_phonics_sounds_id: 9, end_phonics_sounds_id: 1, syllables: 2 },
+        { id: 36, word: 'Sandwich', language_id: 1, start_phonics_sounds_id: 19, middle_phonics_sounds_id: 1, end_phonics_sounds_id: 8, syllables: 2 },
+        { id: 37, word: 'Hamburger', language_id: 1, start_phonics_sounds_id: 8, middle_phonics_sounds_id: 1, end_phonics_sounds_id: 7, syllables: 3 },
+        { id: 38, word: 'Ice Cream', language_id: 1, start_phonics_sounds_id: 9, middle_phonics_sounds_id: 5, end_phonics_sounds_id: 13, syllables: 2 },
+        { id: 39, word: 'Pasta', language_id: 1, start_phonics_sounds_id: 16, middle_phonics_sounds_id: 1, end_phonics_sounds_id: 20, syllables: 2 },
+        { id: 40, word: 'Ham', language_id: 1, start_phonics_sounds_id: 8, middle_phonics_sounds_id: 1, end_phonics_sounds_id: 13, syllables: 1 },
+        { id: 41, word: 'Bread', language_id: 1, start_phonics_sounds_id: 2, middle_phonics_sounds_id: 18, end_phonics_sounds_id: 5, syllables: 1 },
+        { id: 42, word: 'lettuce', language_id: 1, start_phonics_sounds_id: 12, middle_phonics_sounds_id: 5, end_phonics_sounds_id: 20, syllables: 2 },
+        { id: 43, word: 'spinach', language_id: 1, start_phonics_sounds_id: 19, middle_phonics_sounds_id: 16, end_phonics_sounds_id: 9, syllables: 2 },
+        { id: 44, word: 'zucchini', language_id: 1, start_phonics_sounds_id: 26, middle_phonics_sounds_id: 21, end_phonics_sounds_id: 3, syllables: 3 },
+        { id: 45, word: 'Ears', language_id: 1, start_phonics_sounds_id: 8, middle_phonics_sounds_id: 5, end_phonics_sounds_id: 4, syllables: 1 },
+        { id: 46, word: 'Hands', language_id: 1, start_phonics_sounds_id: 8, middle_phonics_sounds_id: 1, end_phonics_sounds_id: 4, syllables: 1 },
+        { id: 47, word: 'Tongue', language_id: 1, start_phonics_sounds_id: 6, middle_phonics_sounds_id: 5, end_phonics_sounds_id: 20, syllables: 1 },
+        { id: 48, word: 'Hair', language_id: 1, start_phonics_sounds_id: 6, middle_phonics_sounds_id: 1, end_phonics_sounds_id: 5, syllables: 1 },
+        { id: 49, word: 'mouth', language_id: 1, start_phonics_sounds_id: 13, middle_phonics_sounds_id: 6, end_phonics_sounds_id: 8, syllables: 1 },
+        { id: 50, word: 'Arms', language_id: 1, start_phonics_sounds_id: 14, middle_phonics_sounds_id: 15, end_phonics_sounds_id: 5, syllables: 1 },
+        { id: 51, word: 'Eyes', language_id: 1, start_phonics_sounds_id: 5, middle_phonics_sounds_id: 9, end_phonics_sounds_id: 5, syllables: 1 },
+        { id: 52, word: 'Hat', language_id: 1, start_phonics_sounds_id: 8, middle_phonics_sounds_id: 1, end_phonics_sounds_id: 20, syllables: 1 },
+        { id: 53, word: 'Gloves', language_id: 1, start_phonics_sounds_id: 7, middle_phonics_sounds_id: 12, end_phonics_sounds_id: 5, syllables: 1 },
+        { id: 54, word: 'Jacket', language_id: 1, start_phonics_sounds_id: 10, middle_phonics_sounds_id: 1, end_phonics_sounds_id: 3, syllables: 2 },
+        { id: 55, word: 'Scarf', language_id: 1, start_phonics_sounds_id: 19, middle_phonics_sounds_id: 3, end_phonics_sounds_id: 1, syllables: 1 },
+        { id: 56, word: 'Socks', language_id: 1, start_phonics_sounds_id: 19, middle_phonics_sounds_id: 15, end_phonics_sounds_id: 11, syllables: 1 },         
+        { id: 57, word: 'Boots', language_id: 1, start_phonics_sounds_id: 2, middle_phonics_sounds_id: 15, end_phonics_sounds_id: 20, syllables: 1 },
+        { id: 58, word: 'Swim', language_id: 1, middle_phonics_sounds_id: 23, end_phonics_sounds_id: 13, syllables: 1 },
+        { id: 59, word: 'Run', language_id: 1, end_phonics_sounds_id: 14 },
+        { id: 60, word: 'Play Tennis', language_id: 1, middle_phonics_sounds_id: 15, end_phonics_sounds_id: 19, syllables: 2 },
+        { id: 61, word: 'Ride a Bike', language_id: 1, middle_phonics_sounds_id: 9, end_phonics_sounds_id: 11, syllables: 2 },
+        { id: 62, word: 'Soccer', language_id: 1, middle_phonics_sounds_id: 15, end_phonics_sounds_id: 18, syllables: 2 },
+      ]);
+    });
+};
 
-    await knex('words').insert(animalsData);
-  };
   
