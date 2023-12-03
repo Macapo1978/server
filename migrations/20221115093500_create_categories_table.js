@@ -1,18 +1,10 @@
 exports.up = function (knex) {
-    return knex.schema.createTable('languages', (table) => {
+    return knex.schema.createTable('categories', (table) => {
       table.increments('id').primary();
       table.string('description').notNullable();
     });
   };
   
   exports.down = function (knex) {
-    return knex.schema.dropTableIfExists('languages');
+    return knex.schema.dropTableIfExists('categories');
   };
-  
-  
-
-  
-
-  
-  
-  
